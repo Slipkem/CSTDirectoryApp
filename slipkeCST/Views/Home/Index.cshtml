@@ -1,0 +1,111 @@
+﻿<div class="page-header">
+    <h1>Directory</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Add Person</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputFirstName" class="col-sm-2 control-label">First&nbsp;Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFirstName" ng-model="add.firstName" required pattern=".*\S+.*" ng-change="addChange()"/>
+                        </div>
+
+                        <label for="inputLastName" class="col-sm-2 control-label">Last&nbsp;Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputLastName" ng-model="add.lastName" required pattern=".*\S+.*" ng-change="addChange()"/>
+                        </div>
+
+                        <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAddress" ng-model="add.address" required pattern=".*\S+.*" ng-change="addChange()"/>
+                        </div>
+
+                        <label for="inputCity" class="col-sm-2 control-label">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCity" ng-model="add.city"  ng-change="addChange()"/>
+                        </div>
+
+                        <label for="inputState" class="col-sm-2 control-label">State</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputState" ng-model="add.state"  ng-change="addChange()"/>
+                        </div>
+
+                        <label for="inputZip" class="col-sm-2 control-label">Zip</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputZip" ng-model="add.zip" ng-change="addChange()"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default col-sm-2" ng-click="addPerson()">Add</button>
+                    <div class="alert alert-success col-sm-offset-6" role="alert" ng-show="addSuccess">
+                        Record added!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Search Directory</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputFirstName" class="col-sm-2 control-label">First&nbsp;Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFirstName" ng-model="person.firstName" ng-change="searchChange()"/>
+                        </div>
+
+                        <label for="inputLastName" class="col-sm-2 control-label">Last&nbsp;Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputLastName" ng-model="person.lastName" ng-change="searchChange()"/>
+                        </div>
+
+                        <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAddress" ng-model="person.address" ng-change="searchChange()"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default col-sm-2" ng-click="searchPerson()">Search</button>
+                    <div class="alert alert-danger col-sm-offset-6" role="alert" ng-show="searchFail">
+                        No records found!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div>
+            <table ng-show="isVisible" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><a href="#" ng-click="sortField='FirstName'">First Name</a></th>
+                        <th><a href="#" ng-click="sortField='LastName'">Last Name</a></th>
+                        <th><a href="#" ng-click="sortField='Address'">Full Address</a></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="person in people|orderBy:sortField">
+                    <tr>
+                        <td>{{person.FirstName}}</td>
+                        <td>{{person.LastName}}</td>
+                        <td>{{person.Address}}, {{person.City}}, {{person.State}}, {{person.Zip}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+</div>
